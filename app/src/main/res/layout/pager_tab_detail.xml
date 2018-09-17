@@ -4,12 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
-    <include layout="@layout/includ_title_bar"></include>
-
-    <FrameLayout
-        android:id="@+id/fl_content"
+    <priv.zl.mycommon.view.PullToRefreshListViewFoot
+        android:id="@+id/lv_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"></FrameLayout>
+        android:layout_weight="1"
+        android:cacheColorHint="#fff"></priv.zl.mycommon.view.PullToRefreshListViewFoot>
+
 </LinearLayout>
