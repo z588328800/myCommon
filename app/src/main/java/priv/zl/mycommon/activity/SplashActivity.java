@@ -31,7 +31,7 @@ public class SplashActivity extends Activity {
     ImageView ivSplash;
     LinearLayout llSplash;
 
-
+//修改这里
     TextView tvDialogContent;
     Button btnNoagreed;
     Button btnAgreed;
