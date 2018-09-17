@@ -21,4 +21,5 @@
     <color name="orange">#f4b940</color>
     <color name="purple">#884599</color>
     <color name="dark">#000</color>
+    <color name="radioBackground">#f8f8f9</color>
 </resources>
