@@ -96,7 +96,7 @@ public class SplashActivity extends Activity {
         btnAgreed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //同意，关闭此窗口，一秒后进入主界面
+                //同意，关闭此窗口，一秒后进入主界面 
                 System.out.println("同意了");
                 PrefUtils.setBoolean("ifAgreedPrivacyStatement", false);
                 dialog.cancel();
