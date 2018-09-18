@@ -6,8 +6,8 @@ android {
         applicationId "priv.zl.mycommon"
         minSdkVersion 14
         targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        versionCode 1    //版本号，取整数
+        versionName "1.0"  //版本名称：随便起名
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -31,4 +31,6 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation project(':SlidingMenu_Lib')
     implementation project(':ViewPagerIndicatorLibrary')
+    implementation files('libs/android-async-http-master.jar')
+    implementation files('libs/gson-2.3.1.jar')
 }
