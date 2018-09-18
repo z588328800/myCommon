@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
@@ -15,12 +17,18 @@ import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import priv.zl.mycommon.R;
+import priv.zl.mycommon.domain.VersionMessage;
+import priv.zl.mycommon.utils.AppUtils;
 import priv.zl.mycommon.utils.MyTextUtils;
 import priv.zl.mycommon.utils.PrefUtils;
 import priv.zl.mycommon.utils.UIUtils;
@@ -29,9 +37,10 @@ import priv.zl.mycommon.utils.UIUtils;
 public class SplashActivity extends Activity {
 
     ImageView ivSplash;
-    LinearLayout llSplash;
+    RelativeLayout llSplash;
+    TextView tvVersionCode;
 
-//修改这里
+    //修改这里
     TextView tvDialogContent;
     Button btnNoagreed;
     Button btnAgreed;
@@ -41,25 +50,59 @@ public class SplashActivity extends Activity {
     public static final String 链接内容 = "《隐私声明》";
     public static final String 链接url = "https://www.baidu.com/";
 
+    AsyncHttpClient client;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        client = new AsyncHttpClient();
+        client.setTimeout(3000);
+        client.get("http://10.0.2.2:8080/zhihuibeijing/GetJsonNewsCenter1?json_path=version.json", new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(String content) {
+                Gson gson = new Gson();
+                VersionMessage versionMessage = gson.fromJson(content, VersionMessage.class);
+                if (AppUtils.getAppVersionCode() < versionMessage.versionCode) { //如果此app版本小于服务器版本
+                    //更新
+                    System.out.println("更新" + versionMessage.toString());
+
+
+
+
+                } else {
+                    if (PrefUtils.getBoolean("ifAgreedPrivacyStatement", true)) {
+                        showDialog();
+                    } else {
+                        gotoNextActivity();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable error, String content) {
+                System.out.println("失败" + content);
+                //如果已经同意隐私条款
+                if (PrefUtils.getBoolean("ifAgreedPrivacyStatement", true)) {
+                    showDialog();
+                } else {
+                    gotoNextActivity();
+                }
+            }
+        });
+        //获取版本信息
+        AppUtils.getAppVersionCode();
 
         //初始化页面
         ivSplash = findViewById(R.id.iv_splash);
         llSplash = findViewById(R.id.ll_splash);
+        tvVersionCode = findViewById(R.id.tv_versionCode);
+        tvVersionCode.setText(AppUtils.getAppVersionName());
         Glide.with(this).load(R.drawable.giftest).into(ivSplash);
 
 
-        //如果已经同意隐私条款
-        if (PrefUtils.getBoolean("ifAgreedPrivacyStatement", true)) {
-            showDialog();
-        } else {
-            gotoNextActivity();
-        }
-
     }
+
 
     /**
      * 弹出隐私声明对话框

@@ -31,4 +31,6 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation project(':SlidingMenu_Lib')
     implementation project(':ViewPagerIndicatorLibrary')
+    implementation files('libs/android-async-http-master.jar')
+    implementation files('libs/gson-2.3.1.jar')
 }
