@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="C:\OneDriveShare\OneDrive\androidStudioProject\myCommon\ViewPagerIndicatorLibrary\src\main\shaders"/></dataSet><dataSet config="debug"><source path="C:\OneDriveShare\OneDrive\androidStudioProject\myCommon\ViewPagerIndicatorLibrary\src\debug\shaders"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="C:\OneDriveShare\OneDrive\androidStudioProject\commonDemo\myCommon\ViewPagerIndicatorLibrary\src\main\shaders"/></dataSet><dataSet config="debug"><source path="C:\OneDriveShare\OneDrive\androidStudioProject\commonDemo\myCommon\ViewPagerIndicatorLibrary\src\debug\shaders"/></dataSet></merger>

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.ActionMode;
 
 import priv.zl.mycommon.utils.ActivityManager;
 
@@ -76,4 +77,6 @@ public abstract class BaseActivity extends Activity {
         activityManager.removeActivity(this);
         super.finish();
     }
+
+
 }

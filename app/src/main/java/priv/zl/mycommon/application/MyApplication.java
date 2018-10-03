@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Handler;
 
+import org.xutils.x;
+
 
 public class MyApplication extends Application {
     public static Context context = null;
@@ -67,5 +69,7 @@ public class MyApplication extends Application {
         mainThreadId = android.os.Process.myTid(); //返回当前线程ID，因为MyApplication运行在主线程中，所以返回的是主线程ID
 
         // CrashHandler.getInstance().init(this); //启动全局异常处理类
+
+        x.Ext.init(this);
     }
 }

@@ -1,6 +1,8 @@
 package priv.zl.mycommon.activity;
 
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -62,6 +64,22 @@ public class MainActivity extends SlidingFragmentActivity {
      */
     public Fragment getMainFragment() {
         return getSupportFragmentManager().findFragmentByTag("main");
+    }
+
+
+    //处理权限申请回调(写在Activity中)
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case 1: { // 授权被允许
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    System.out.println("授权请求被允许");
+                } else {
+                    System.out.println("授权请求被拒绝");
+                }
+                return;
+            }
+        }
     }
 
 
